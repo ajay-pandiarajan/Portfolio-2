@@ -6,7 +6,7 @@
 <title>Ajay P — Electronics Student &amp; Explorer</title>
 <meta name="description" content="Portfolio of Ajay P, an electronics student building intelligent hardware and embedded systems." />
 
-<!-- Fonts: Google Sans / Plus Jakarta Sans for headlines, Open Sauce / DM Sans for body -->
+<!-- Fonts & External Styles -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,17 +20,11 @@
       extend: {
         colors: {
           obsidian: '#0B0F19',
-          slate: {
-            surface: '#161B26',
-          },
+          slate: { surface: '#161B26' },
           ink: '#F3F4F6',
           fog: '#9CA3AF',
-          indigo: {
-            glow: '#6366F1',
-          },
-          mint: {
-            emerald: '#10B981',
-          },
+          indigo: { glow: '#6366F1' },
+          mint: { emerald: '#10B981' },
         },
         fontFamily: {
           head: ['"Plus Jakarta Sans"', '"Google Sans"', 'sans-serif'],
@@ -41,229 +35,13 @@
   };
 </script>
 
-<style>
-  :root{
-    --bg:#0B0F19;
-    --surface:#161B26;
-    --ink:#F3F4F6;
-    --fog:#9CA3AF;
-    --indigo:#6366F1;
-    --mint:#10B981;
-  }
-  html{ scroll-behavior:smooth; }
-  body{
-    background-color:var(--bg);
-    color:var(--ink);
-    font-family:'DM Sans','Open Sauce',sans-serif;
-  }
-  h1,h2,h3,.font-head{ font-family:'Plus Jakarta Sans','Google Sans',sans-serif; }
-
-  /* faint circuit-trace backdrop, drawn once with SVG pattern (electronics motif, not decoration-for-its-own-sake) */
-  .trace-field{
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(156,163,175,0.14) 1px, transparent 0);
-    background-size: 28px 28px;
-  }
-
-  .node-line{
-    position:relative;
-  }
-  .node-line::before{
-    content:'';
-    position:absolute;
-    left:5px;
-    top:0.65rem;
-    bottom:-2.25rem;
-    width:1px;
-    background:linear-gradient(to bottom, rgba(99,102,241,0.55), rgba(16,185,129,0.15));
-  }
-  .node-line:last-child::before{ display:none; }
-  .node-dot{
-    width:11px; height:11px; border-radius:9999px;
-    background:var(--bg);
-    border:1.5px solid var(--indigo);
-    box-shadow:0 0 0 4px rgba(99,102,241,0.08);
-    flex-shrink:0;
-  }
-
-  .link-underline{
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0% 1px;
-    transition: background-size 300ms cubic-bezier(0.22,1,0.36,1);
-  }
-  .link-underline:hover{ background-size: 100% 1px; }
-
-  .card-hover{
-    transition: transform 380ms cubic-bezier(0.22,1,0.36,1), border-color 380ms ease, box-shadow 380ms ease;
-  }
-  .card-hover:hover{
-    transform: translateY(-4px);
-    border-color: rgba(99,102,241,0.45);
-    box-shadow: 0 12px 40px -18px rgba(99,102,241,0.35);
-  }
-
-  .reveal{
-    opacity:0;
-    transform: translateY(18px);
-    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1), transform 700ms cubic-bezier(0.22,1,0.36,1);
-  }
-  .reveal.in{
-    opacity:1;
-    transform: translateY(0);
-  }
-
-  ::selection{ background: rgba(99,102,241,0.35); color:#fff; }
-
-  ::-webkit-scrollbar{ width:10px; }
-  ::-webkit-scrollbar-track{ background:var(--bg); }
-  ::-webkit-scrollbar-thumb{ background:#232a3a; border-radius:9999px; }
-  ::-webkit-scrollbar-thumb:hover{ background:#2c3448; }
-
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    .reveal{ opacity:1; transform:none; transition:none; }
-    .card-hover, .card-hover:hover{ transform:none; transition:none; }
-  }
-
-  :focus-visible{
-    outline: 2px solid var(--indigo);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-</style>
+<!-- Custom Styles -->
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="antialiased bg-obsidian text-ink font-body selection:bg-indigo-glow">
 
-<!-- ======================================================
-     EDITABILITY ARCHITECTURE — single source of truth
-     Edit everything about the site's content right here.
-====================================================== -->
-<script>
-const USER_PROFILE = {
-  name: "Ajay P",
-  logoInitials: "AP",
-  title: "Electronics Student & Explorer",
-  location: "Madurai, TamilNadu, India",
-  bio: "Passionate about bridging hardware and software. Focused on microcontroller programming, firmware development, and building efficient, real-world electronic solutions.",
-  heroCtaLabel: "View Work",
-  heroCtaHref: "#projects",
-  resumeHref: "#",
-
-  socials: {
-    github: "https://ajay-pandiarajan.com/",
-    linkedin: "https://ajaypandiarajan/in/",
-    email: "ajaypandiyarajann@gmail.com",
-  },
-
-  nav: [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Certificates", href: "#certificates" },
-    { label: "Achievements", href: "#achievements" },
-    { label: "Contact", href: "#contact" },
-  ],
-
-  about: {
-    heading: "About",
-    paragraphs: [
-      "I'm an electronics engineering student who thinks best with a soldering iron in one hand and a datasheet in the other. My work sits at the intersection of embedded hardware, signal processing, and applied machine learning.",
-      "Outside of coursework, I take apart old radios, prototype sensor rigs on breadboards, and write firmware that occasionally works on the first try.",
-    ],
-    stats: [
-      { value: "12+", label: "Circuits prototyped" },
-      { value: "8.04", label: "Cumulative Grade Point Average" },
-      { value: "6", label: "Programming languages known" },
-    ],
-  },
-
-  projects: [
-    {
-      title: "Design of Electronic Voting Machine",
-      description: "A hardware-based, tamper-proof Electronic Voting Machine designed with cascaded CD4026 decade counters to log and display votes on 7-segment modules without using a microcontroller.",
-      tags: ["CD4026", "7 Segment Display", "IoT"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-    {
-      title: "Fingerprint based Electronic Voting Machine",
-      description: "A biometrically secured Electronic Voting Machine that utilizes an embedded fingerprint sensor to authenticate voters, prevent duplicate voting, and securely tally votes via a microcontroller system.",
-      tags: ["RM305", "Arduino", "IoT"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-    {
-      title: "TrackoVex-a simple solution",
-      description: "An edge ML pipeline that classifies motor bearing faults from accelerometer data, running inference directly on an ESP32.",
-      tags: ["Tiny", "PyTorch", "ESP32"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-  ],
-
-  certificates: [
-    {
-      name: "Embedded Systems Essentials",
-      issuer: "Texas Instruments",
-      date: "2025",
-      link: "#",
-    },
-    {
-      name: "Machine Learning Specialization",
-      issuer: "DeepLearning.AI",
-      date: "2024",
-      link: "#",
-    },
-    {
-      name: "Digital Signal Processing",
-      issuer: "IIT Madras — NPTEL",
-      date: "2024",
-      link: "#",
-    },
-    {
-      name: "PCB Design with KiCad",
-      issuer: "Coursera",
-      date: "2023",
-      link: "#",
-    },
-    {
-      name: "Google Cloud Digital Leader",
-      issuer: "Google",
-      date: "2023",
-      link: "#",
-    },
-    {
-      name: "IoT Systems Architecture",
-      issuer: "Cisco Networking Academy",
-      date: "2023",
-      link: "#",
-    },
-  ],
-
-  achievements: [
-    { year: "2026", title: "1st place, National Embedded Systems Hackathon", detail: "Led a 3-person team building the vibration fault classifier under a 24-hour deadline." },
-    { year: "2025", title: "Published undergraduate research note on MPPT efficiency", detail: "Presented findings at a regional student power-electronics symposium." },
-    { year: "2024", title: "Selected for university robotics research assistantship", detail: "Assisted with actuator control research in the robotics lab." },
-    { year: "2023", title: "Finalist, State-Level Electronics Design Contest", detail: "Reached the top 5 out of 140 teams with the modular weather station." },
-    { year: "2022", title: "Started documenting builds publicly", detail: "Began writing up projects and circuit notes to track progress over time." },
-  ],
-
-  contact: {
-    heading: "Let's talk",
-    text: "Open to internships, collaborations, and interesting hardware problems. The fastest way to reach me is email.",
-  },
-
-  footer: {
-    copyright: "Ajay P. Built with curiosity and a lot of solder flux.",
-  },
-};
-</script>
-
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
+<!-- NAVIGATION -->
 <header id="site-nav" class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-obsidian/70 backdrop-blur-md">
   <nav class="max-w-6xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
     <a href="#top" class="flex items-center gap-2.5 group" aria-label="Back to top">
@@ -281,27 +59,40 @@ const USER_PROFILE = {
 
 <main id="top">
 
-  <!-- ======================================================
-       HERO
-  ====================================================== -->
+  <!-- HERO (FIRST SLIDE) WITH PROFILE IMAGE -->
   <section class="relative overflow-hidden trace-field">
     <div class="absolute inset-0 bg-gradient-to-b from-obsidian via-obsidian/95 to-obsidian"></div>
-    <div class="relative max-w-6xl mx-auto px-6 sm:px-8 pt-40 pb-28 sm:pt-48 sm:pb-36">
-      <div class="reveal max-w-3xl">
-        <span id="hero-badge" class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-surface px-3.5 py-1.5 text-xs text-fog mb-7"></span>
-        <h1 id="hero-name" class="font-head font-extrabold text-ink leading-[1.05] text-5xl sm:text-6xl lg:text-7xl mb-6"></h1>
-        <p id="hero-bio" class="text-fog text-base sm:text-lg leading-relaxed max-w-xl mb-10"></p>
-        <div class="flex flex-wrap items-center gap-5">
-          <a id="hero-cta" href="#" class="inline-flex items-center gap-2 rounded-xl bg-indigo-glow px-6 py-3 text-sm font-medium text-white hover:bg-indigo-glow/90 transition-colors"></a>
-          <div id="hero-socials" class="flex items-center gap-4"></div>
+    <div class="relative max-w-6xl mx-auto px-6 sm:px-8 pt-36 pb-24 sm:pt-44 sm:pb-32">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Text Column -->
+        <div class="reveal lg:col-span-7">
+          <span id="hero-badge" class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-surface px-3.5 py-1.5 text-xs text-fog mb-7"></span>
+          <h1 id="hero-name" class="font-head font-extrabold text-ink leading-[1.05] text-4xl sm:text-6xl lg:text-6xl mb-6"></h1>
+          <p id="hero-bio" class="text-fog text-base sm:text-lg leading-relaxed max-w-xl mb-10"></p>
+          <div class="flex flex-wrap items-center gap-5">
+            <a id="hero-cta" href="#" class="inline-flex items-center gap-2 rounded-xl bg-indigo-glow px-6 py-3 text-sm font-medium text-white hover:bg-indigo-glow/90 transition-colors"></a>
+            <div id="hero-socials" class="flex items-center gap-4"></div>
+          </div>
         </div>
+
+        <!-- Image Column with Soft Gradient Fade Edge -->
+        <div class="reveal lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full profile-glow-container">
+            <img 
+              id="hero-avatar" 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" 
+              alt="Ajay P Profile" 
+              class="w-full h-full object-cover rounded-full profile-fade-mask grayscale contrast-125 hover:grayscale-0 transition-all duration-700 opacity-90"
+            />
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ======================================================
-       ABOUT
-  ====================================================== -->
+  <!-- ABOUT -->
   <section id="about" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-20">
       <div class="reveal lg:col-span-3">
@@ -314,9 +105,7 @@ const USER_PROFILE = {
     </div>
   </section>
 
-  <!-- ======================================================
-       PROJECTS
-  ====================================================== -->
+  <!-- PROJECTS -->
   <section id="projects" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
     <div class="reveal mb-12 flex items-end justify-between flex-wrap gap-4">
       <div>
@@ -327,9 +116,7 @@ const USER_PROFILE = {
     <div id="projects-grid" class="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
-  <!-- ======================================================
-       CERTIFICATES
-  ====================================================== -->
+  <!-- CERTIFICATES -->
   <section id="certificates" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
     <div class="reveal mb-12">
       <h2 class="font-head font-bold text-3xl sm:text-4xl mb-3">Certificates</h2>
@@ -338,9 +125,7 @@ const USER_PROFILE = {
     <div id="certificates-grid" class="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
-  <!-- ======================================================
-       ACHIEVEMENTS / TIMELINE
-  ====================================================== -->
+  <!-- ACHIEVEMENTS -->
   <section id="achievements" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
     <div class="reveal mb-14">
       <h2 class="font-head font-bold text-3xl sm:text-4xl mb-3">Achievements</h2>
@@ -349,9 +134,7 @@ const USER_PROFILE = {
     <div id="achievements-timeline" class="reveal max-w-2xl"></div>
   </section>
 
-  <!-- ======================================================
-       CONTACT
-  ====================================================== -->
+  <!-- CONTACT -->
   <section id="contact" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
     <div class="reveal rounded-2xl border border-white/10 bg-slate-surface px-8 py-14 sm:px-14 sm:py-16 text-center">
       <h2 id="contact-heading" class="font-head font-bold text-3xl sm:text-4xl mb-4"></h2>
@@ -362,9 +145,7 @@ const USER_PROFILE = {
 
 </main>
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
+<!-- FOOTER -->
 <footer class="border-t border-white/5">
   <div class="max-w-6xl mx-auto px-6 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-5">
     <p id="footer-copyright" class="text-sm text-fog"></p>
@@ -372,9 +153,8 @@ const USER_PROFILE = {
   </div>
 </footer>
 
-<!-- ======================================================
-     ICONS (small inline SVG set, no external deps)
-====================================================== -->
+<!-- External Data & App Logic -->
+<script src="data.js"></script>
 <script>
 const ICONS = {
   github: `<svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.24.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.14-1.17 3.14-1.17.62 1.57.23 2.73.11 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55 4.52-1.51 7.78-5.77 7.78-10.8C23.5 5.74 18.27.5 12 .5Z"/></svg>`,
@@ -393,16 +173,14 @@ function socialIconLink(key, href, extraClass=""){
   </a>`;
 }
 
-/* ---------------------------------------------------------
-   RENDER — maps USER_PROFILE straight onto the DOM.
-   Nothing below this line should need editing; change
-   USER_PROFILE above instead.
---------------------------------------------------------- */
 function render(profile){
-  // Nav / logo
   document.getElementById('logo-initials').textContent = profile.logoInitials;
   document.getElementById('logo-name').textContent = profile.name;
   document.title = `${profile.name} — ${profile.title}`;
+
+  if(profile.avatarUrl){
+    document.getElementById('hero-avatar').src = profile.avatarUrl;
+  }
 
   const navHTML = profile.nav.map(item =>
     `<li><a href="${item.href}" class="link-underline hover:text-ink transition-colors">${item.label}</a></li>`
@@ -412,7 +190,6 @@ function render(profile){
     `<li><a href="${item.href}" class="block py-2.5 hover:text-ink transition-colors">${item.label}</a></li>`
   ).join("");
 
-  // Hero
   document.getElementById('hero-badge').innerHTML =
     `<span class="w-1.5 h-1.5 rounded-full bg-mint-emerald"></span> ${profile.title}`;
   document.getElementById('hero-name').textContent = `Hi, I'm ${profile.name.split(' ')[0]}.`;
@@ -428,7 +205,6 @@ function render(profile){
   document.getElementById('footer-socials').innerHTML = Object.entries(profile.socials)
     .map(([key, href]) => socialIconLink(key, href, "w-8 h-8")).join("");
 
-  // About
   document.getElementById('about-heading').textContent = profile.about.heading;
   document.getElementById('about-paragraphs').innerHTML = profile.about.paragraphs
     .map(p => `<p>${p}</p>`).join("");
@@ -439,7 +215,6 @@ function render(profile){
     </div>
   `).join("");
 
-  // Projects
   document.getElementById('projects-grid').innerHTML = profile.projects.map(p => `
     <div class="card-hover group rounded-2xl border border-white/10 bg-slate-surface p-6 flex flex-col">
       <div class="flex items-start justify-between gap-3 mb-3">
@@ -456,7 +231,6 @@ function render(profile){
     </div>
   `).join("");
 
-  // Certificates
   document.getElementById('certificates-grid').innerHTML = profile.certificates.map(c => `
     <a href="${c.link}" target="_blank" rel="noopener noreferrer"
       class="card-hover group rounded-2xl border border-white/10 bg-slate-surface p-5 flex flex-col justify-between">
@@ -473,7 +247,6 @@ function render(profile){
     </a>
   `).join("");
 
-  // Achievements timeline
   document.getElementById('achievements-timeline').innerHTML = profile.achievements.map((a, i) => `
     <div class="node-line flex gap-5 pb-9 last:pb-0">
       <div class="flex flex-col items-center pt-1.5">
@@ -487,21 +260,16 @@ function render(profile){
     </div>
   `).join("");
 
-  // Contact
   document.getElementById('contact-heading').textContent = profile.contact.heading;
   document.getElementById('contact-text').textContent = profile.contact.text;
 
-  // Footer
   const year = new Date().getFullYear();
   document.getElementById('footer-copyright').textContent = `© ${year} ${profile.footer.copyright}`;
 }
 
 render(USER_PROFILE);
 
-/* ---------------------------------------------------------
-   INTERACTIONS
---------------------------------------------------------- */
-// Mobile nav toggle
+// Mobile Nav Toggle
 const navToggle = document.getElementById('nav-toggle');
 const navMobile = document.getElementById('nav-links-mobile');
 const iconOpen = document.getElementById('icon-open');
@@ -523,7 +291,7 @@ navMobile.addEventListener('click', (e) => {
   }
 });
 
-// Scroll reveal
+// Scroll Reveal
 const revealEls = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -535,7 +303,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 revealEls.forEach(el => observer.observe(el));
 
-// Sticky nav shadow on scroll
+// Sticky Nav Shadow
 const siteNav = document.getElementById('site-nav');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 8) {
