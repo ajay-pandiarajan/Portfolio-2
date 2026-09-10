@@ -2,10 +2,10 @@ const USER_PROFILE = {
   name: "Ajay P",
   logoInitials: "AP",
   title: "Electronics Student & Explorer",
-  location: "Chennai, India",
+  location: "Madurai / Chennai, India",
   bio: "I design and build intelligent electronic systems — from PCB layouts to embedded firmware — turning circuit diagrams into working prototypes. Currently exploring the space where signal processing meets machine learning.",
-  heroCtaLabel: "View Work",
-  heroCtaHref: "#projects",
+  heroCtaLabel: "View Education",
+  heroCtaHref: "#education",
   resumeHref: "#",
 
   socials: {
@@ -16,10 +16,10 @@ const USER_PROFILE = {
 
   nav: [
     { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Certificates", href: "#certificates" },
+    { label: "Education", href: "#education" },
     { label: "Achievements", href: "#achievements" },
     { label: "Contact", href: "#contact" },
+    { label: "Feedback", href: "#feedback" },
   ],
 
   about: {
@@ -35,101 +35,58 @@ const USER_PROFILE = {
     ],
   },
 
-  projects: [
+  education: [
     {
-      title: "Design of Basic Electronic Voting Machine",
-      description: "A basic EVM build using CD4026 Decade Counters, 7-Segment Display to demonstrate the voting process",
-      tags: ["IoT", "CD4026", "EVM"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
+      institution: "TVS Higher Secondary School, Madurai",
+      period: "2020 – 2024",
+      field: "Higher Secondary Education (HSC)",
+      interests: ["Basic Electronics", "Physics", "Mathematics", "Computer Science"],
+      description: "Foundational schooling focusing on core science and mathematics, where initial interest in electronics and programming was developed."
     },
     {
-      title: "Fingerprint based Electronic Voting Machine",
-      description: "A Biometric enabled Voting Machine which enables the eligible voters to vote and designed with Arduino microcontroller and RM305 FP sensor.",
-      tags: ["RM305", "Arduino", "IoT"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-    {
-      title: "TrackoVex-a simple solution",
-      description: "An BLE Tracker device,inspired from Apple Airtag and build with the ESP32",
-      tags: ["ESP32", "BLE", "WebApp"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-  /*  {
-      title: "Modular PCB Weather Station",
-      description: "A stackable, solar-powered weather station with swappable sensor daughterboards and a LoRa uplink to a home dashboard.",
-      tags: ["KiCad", "LoRa", "C++"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-    {
-      title: "Voice-Activated Lab Bench",
-      description: "An offline voice-command interface for switching bench instruments, built on a Raspberry Pi with a local keyword spotter.",
-      tags: ["Raspberry Pi", "TensorFlow Lite", "Linux"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },
-    {
-      title: "Open-Source Oscilloscope Probe",
-      description: "A low-cost, high-impedance active probe design with an accompanying calibration app for hobbyist oscilloscopes.",
-      tags: ["Analog Design", "KiCad", "React"],
-      link: "https://github.com/",
-      linkLabel: "GitHub",
-    },*/
+      institution: "Mepco Schlenk Engineering College, Sivakasi",
+      period: "2022 – 2026",
+      field: "B.E. Electronics and Communication Engineering",
+      interests: ["Embedded Systems", "IoT Architecture", "Digital Signal Processing", "Biometric Applications"],
+      description: "Undergraduate degree focusing on circuit design, microcontroller integration, firmware development, and practical hardware design."
+    }
   ],
 
-  certificates: [
-    {
-      name: "Embedded Systems Essentials",
-      issuer: "Texas Instruments",
-      date: "2025",
-      link: "#",
-    },
-    {
-      name: "Machine Learning Specialization",
-      issuer: "DeepLearning.AI",
-      date: "2024",
-      link: "#",
-    },
-    {
-      name: "Digital Signal Processing",
-      issuer: "IIT Madras — NPTEL",
-      date: "2024",
-      link: "#",
-    },
-    {
-      name: "PCB Design with KiCad",
-      issuer: "Coursera",
-      date: "2023",
-      link: "#",
-    },
-    {
-      name: "Google Cloud Digital Leader",
-      issuer: "Google",
-      date: "2023",
-      link: "#",
-    },
-    {
-      name: "IoT Systems Architecture",
-      issuer: "Cisco Networking Academy",
-      date: "2023",
-      link: "#",
-    },
-  ],
-
-  achievements: [
-    { year: "2026", title: "1st place, National Embedded Systems Hackathon", detail: "Led a 3-person team building the vibration fault classifier under a 24-hour deadline." },
-    { year: "2025", title: "Published undergraduate research note on MPPT efficiency", detail: "Presented findings at a regional student power-electronics symposium." },
-    { year: "2024", title: "Selected for university robotics research assistantship", detail: "Assisted with actuator control research in the robotics lab." },
-    { year: "2023", title: "Finalist, State-Level Electronics Design Contest", detail: "Reached the top 5 out of 140 teams with the modular weather station." },
-    { year: "2022", title: "Started documenting builds publicly", detail: "Began writing up projects and circuit notes to track progress over time." },
-  ],
+  achievements: {
+    symposiums: [
+      {
+        year: "2025",
+        title: "Paper Presentation",
+        detail: "Presented a paper- Cobots in HealthCare at Government College of Engineering and Technology, Erode."
+      },
+      {
+        year: "2023",
+        title: "State-Level Electronics Design Contest",
+        detail: "Finalist standing in top 5 out of 140 teams for innovative hardware system design presentation."
+      }
+    ],
+    researchDone: [
+      {
+        year: "2026",
+        title: "Design of MicroStrip Patch Antenna using OpenEMS",
+        detail: "Attended Workshop on designing an Antenna and designed a Microstrip Patch Antenna and gone through its parameters."
+      },
+    /*  {
+        year: "2025",
+        title: "Undergraduate Research Note on MPPT Efficiency",
+        detail: "Published research note analyzing efficiency parameters in modern solar charge controllers."
+      },
+      {
+        year: "2024",
+        title: "Actuator Control Research Assistantship",
+        detail: "Selected for university robotics research assistantship focused on high-precision actuator control."
+      }*/
+    ]
+  },
 
   contact: {
     heading: "Let's talk",
-    text: "Open to internships, collaborations, and interesting hardware problems. The fastest way to reach me is email.",
+    text: "Open to internships, collaborations, and interesting hardware problems. Connect with me directly via email, LinkedIn, or GitHub.",
   },
 
   footer: {
