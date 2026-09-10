@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ajay P — Electronics Student &amp; Explorer</title>
+<meta name="description" content="Portfolio of Ajay P, an electronics student building intelligent hardware and embedded systems." />
+
+<!-- Fonts: Google Sans / Plus Jakarta Sans for headlines, Open Sauce / DM Sans for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          obsidian: '#0B0F19',
+          slate: {
+            surface: '#161B26',
+          },
+          ink: '#F3F4F6',
+          fog: '#9CA3AF',
+          indigo: {
+            glow: '#6366F1',
+          },
+          mint: {
+            emerald: '#10B981',
+          },
+        },
+        fontFamily: {
+          head: ['"Plus Jakarta Sans"', '"Google Sans"', 'sans-serif'],
+          body: ['"DM Sans"', '"Open Sauce"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root{
+    --bg:#0B0F19;
+    --surface:#161B26;
+    --ink:#F3F4F6;
+    --fog:#9CA3AF;
+    --indigo:#6366F1;
+    --mint:#10B981;
+  }
+  html{ scroll-behavior:smooth; }
+  body{
+    background-color:var(--bg);
+    color:var(--ink);
+    font-family:'DM Sans','Open Sauce',sans-serif;
+  }
+  h1,h2,h3,.font-head{ font-family:'Plus Jakarta Sans','Google Sans',sans-serif; }
+
+  /* faint circuit-trace backdrop, drawn once with SVG pattern (electronics motif, not decoration-for-its-own-sake) */
+  .trace-field{
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(156,163,175,0.14) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  .node-line{
+    position:relative;
+  }
+  .node-line::before{
+    content:'';
+    position:absolute;
+    left:5px;
+    top:0.65rem;
+    bottom:-2.25rem;
+    width:1px;
+    background:linear-gradient(to bottom, rgba(99,102,241,0.55), rgba(16,185,129,0.15));
+  }
+  .node-line:last-child::before{ display:none; }
+  .node-dot{
+    width:11px; height:11px; border-radius:9999px;
+    background:var(--bg);
+    border:1.5px solid var(--indigo);
+    box-shadow:0 0 0 4px rgba(99,102,241,0.08);
+    flex-shrink:0;
+  }
+
+  .link-underline{
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 300ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .link-underline:hover{ background-size: 100% 1px; }
+
+  .card-hover{
+    transition: transform 380ms cubic-bezier(0.22,1,0.36,1), border-color 380ms ease, box-shadow 380ms ease;
+  }
+  .card-hover:hover{
+    transform: translateY(-4px);
+    border-color: rgba(99,102,241,0.45);
+    box-shadow: 0 12px 40px -18px rgba(99,102,241,0.35);
+  }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity 700ms cubic-bezier(0.22,1,0.36,1), transform 700ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.in{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  ::selection{ background: rgba(99,102,241,0.35); color:#fff; }
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:#232a3a; border-radius:9999px; }
+  ::-webkit-scrollbar-thumb:hover{ background:#2c3448; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .card-hover, .card-hover:hover{ transform:none; transition:none; }
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--indigo);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+
+<body class="antialiased bg-obsidian text-ink font-body selection:bg-indigo-glow">
+
+<!-- ======================================================
+     EDITABILITY ARCHITECTURE — single source of truth
+     Edit everything about the site's content right here.
+====================================================== -->
+<script>
+const USER_PROFILE = {
+  name: "Ajay P",
+  logoInitials: "AP",
+  title: "Electronics Student & Explorer",
+  location: "Madurai, TamilNadu, India",
+  bio: "Passionate about bridging hardware and software. Focused on microcontroller programming, firmware development, and building efficient, real-world electronic solutions.",
+  heroCtaLabel: "View Work",
+  heroCtaHref: "#projects",
+  resumeHref: "#",
+
+  socials: {
+    github: "https://ajay-pandiarajan.com/",
+    linkedin: "https://ajaypandiarajan/in/",
+    email: "ajaypandiyarajann@gmail.com",
+  },
+
+  nav: [
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Certificates", href: "#certificates" },
+    { label: "Achievements", href: "#achievements" },
+    { label: "Contact", href: "#contact" },
+  ],
+
+  about: {
+    heading: "About",
+    paragraphs: [
+      "I'm an electronics engineering student who thinks best with a soldering iron in one hand and a datasheet in the other. My work sits at the intersection of embedded hardware, signal processing, and applied machine learning.",
+      "Outside of coursework, I take apart old radios, prototype sensor rigs on breadboards, and write firmware that occasionally works on the first try.",
+    ],
+    stats: [
+      { value: "12+", label: "Circuits prototyped" },
+      { value: "8.04", label: "Cumulative Grade Point Average" },
+      { value: "6", label: "Programming languages known" },
+    ],
+  },
+
+  projects: [
+    {
+      title: "Design of Electronic Voting Machine",
+      description: "A hardware-based, tamper-proof Electronic Voting Machine designed with cascaded CD4026 decade counters to log and display votes on 7-segment modules without using a microcontroller.",
+      tags: ["CD4026", "7 Segment Display", "IoT"],
+      link: "https://github.com/",
+      linkLabel: "GitHub",
+    },
+    {
+      title: "Fingerprint based Electronic Voting Machine",
+      description: "A biometrically secured Electronic Voting Machine that utilizes an embedded fingerprint sensor to authenticate voters, prevent duplicate voting, and securely tally votes via a microcontroller system.",
+      tags: ["RM305", "Arduino", "IoT"],
+      link: "https://github.com/",
+      linkLabel: "GitHub",
+    },
+    {
+      title: "TrackoVex-a simple solution",
+      description: "An edge ML pipeline that classifies motor bearing faults from accelerometer data, running inference directly on an ESP32.",
+      tags: ["Tiny", "PyTorch", "ESP32"],
+      link: "https://github.com/",
+      linkLabel: "GitHub",
+    },
+  ],
+
+  certificates: [
+    {
+      name: "Embedded Systems Essentials",
+      issuer: "Texas Instruments",
+      date: "2025",
+      link: "#",
+    },
+    {
+      name: "Machine Learning Specialization",
+      issuer: "DeepLearning.AI",
+      date: "2024",
+      link: "#",
+    },
+    {
+      name: "Digital Signal Processing",
+      issuer: "IIT Madras — NPTEL",
+      date: "2024",
+      link: "#",
+    },
+    {
+      name: "PCB Design with KiCad",
+      issuer: "Coursera",
+      date: "2023",
+      link: "#",
+    },
+    {
+      name: "Google Cloud Digital Leader",
+      issuer: "Google",
+      date: "2023",
+      link: "#",
+    },
+    {
+      name: "IoT Systems Architecture",
+      issuer: "Cisco Networking Academy",
+      date: "2023",
+      link: "#",
+    },
+  ],
+
+  achievements: [
+    { year: "2026", title: "1st place, National Embedded Systems Hackathon", detail: "Led a 3-person team building the vibration fault classifier under a 24-hour deadline." },
+    { year: "2025", title: "Published undergraduate research note on MPPT efficiency", detail: "Presented findings at a regional student power-electronics symposium." },
+    { year: "2024", title: "Selected for university robotics research assistantship", detail: "Assisted with actuator control research in the robotics lab." },
+    { year: "2023", title: "Finalist, State-Level Electronics Design Contest", detail: "Reached the top 5 out of 140 teams with the modular weather station." },
+    { year: "2022", title: "Started documenting builds publicly", detail: "Began writing up projects and circuit notes to track progress over time." },
+  ],
+
+  contact: {
+    heading: "Let's talk",
+    text: "Open to internships, collaborations, and interesting hardware problems. The fastest way to reach me is email.",
+  },
+
+  footer: {
+    copyright: "Ajay P. Built with curiosity and a lot of solder flux.",
+  },
+};
+</script>
+
+<!-- ======================================================
+     NAVIGATION
+====================================================== -->
+<header id="site-nav" class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-obsidian/70 backdrop-blur-md">
+  <nav class="max-w-6xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5 group" aria-label="Back to top">
+      <span class="w-8 h-8 rounded-lg border border-indigo-glow/40 flex items-center justify-center text-sm font-head font-semibold text-indigo-glow group-hover:border-indigo-glow transition-colors" id="logo-initials"></span>
+      <span class="font-head font-semibold text-ink text-[15px]" id="logo-name"></span>
+    </a>
+    <ul id="nav-links" class="hidden md:flex items-center gap-8 text-sm text-fog"></ul>
+    <button id="nav-toggle" class="md:hidden text-fog hover:text-ink transition-colors" aria-label="Toggle menu" aria-expanded="false">
+      <svg id="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="hidden"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+  <ul id="nav-links-mobile" class="md:hidden hidden flex-col gap-1 px-6 pb-5 pt-1 text-sm text-fog border-t border-white/5"></ul>
+</header>
+
+<main id="top">
+
+  <!-- ======================================================
+       HERO
+  ====================================================== -->
+  <section class="relative overflow-hidden trace-field">
+    <div class="absolute inset-0 bg-gradient-to-b from-obsidian via-obsidian/95 to-obsidian"></div>
+    <div class="relative max-w-6xl mx-auto px-6 sm:px-8 pt-40 pb-28 sm:pt-48 sm:pb-36">
+      <div class="reveal max-w-3xl">
+        <span id="hero-badge" class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-surface px-3.5 py-1.5 text-xs text-fog mb-7"></span>
+        <h1 id="hero-name" class="font-head font-extrabold text-ink leading-[1.05] text-5xl sm:text-6xl lg:text-7xl mb-6"></h1>
+        <p id="hero-bio" class="text-fog text-base sm:text-lg leading-relaxed max-w-xl mb-10"></p>
+        <div class="flex flex-wrap items-center gap-5">
+          <a id="hero-cta" href="#" class="inline-flex items-center gap-2 rounded-xl bg-indigo-glow px-6 py-3 text-sm font-medium text-white hover:bg-indigo-glow/90 transition-colors"></a>
+          <div id="hero-socials" class="flex items-center gap-4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       ABOUT
+  ====================================================== -->
+  <section id="about" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-20">
+      <div class="reveal lg:col-span-3">
+        <h2 id="about-heading" class="font-head font-bold text-3xl sm:text-4xl mb-8"></h2>
+        <div id="about-paragraphs" class="space-y-5 text-fog leading-relaxed"></div>
+      </div>
+      <div class="reveal lg:col-span-2 flex flex-col justify-center gap-6">
+        <div id="about-stats" class="grid grid-cols-3 gap-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       PROJECTS
+  ====================================================== -->
+  <section id="projects" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
+    <div class="reveal mb-12 flex items-end justify-between flex-wrap gap-4">
+      <div>
+        <h2 class="font-head font-bold text-3xl sm:text-4xl mb-3">Projects</h2>
+        <p class="text-fog max-w-md">Hardware and software builds, from PCB to firmware to the odd bit of machine learning.</p>
+      </div>
+    </div>
+    <div id="projects-grid" class="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- ======================================================
+       CERTIFICATES
+  ====================================================== -->
+  <section id="certificates" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
+    <div class="reveal mb-12">
+      <h2 class="font-head font-bold text-3xl sm:text-4xl mb-3">Certificates</h2>
+      <p class="text-fog max-w-md">Coursework and credentials that back up the projects above.</p>
+    </div>
+    <div id="certificates-grid" class="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </section>
+
+  <!-- ======================================================
+       ACHIEVEMENTS / TIMELINE
+  ====================================================== -->
+  <section id="achievements" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
+    <div class="reveal mb-14">
+      <h2 class="font-head font-bold text-3xl sm:text-4xl mb-3">Achievements</h2>
+      <p class="text-fog max-w-md">A running log of milestones, wins, and things worth remembering.</p>
+    </div>
+    <div id="achievements-timeline" class="reveal max-w-2xl"></div>
+  </section>
+
+  <!-- ======================================================
+       CONTACT
+  ====================================================== -->
+  <section id="contact" class="max-w-6xl mx-auto px-6 sm:px-8 py-24 sm:py-28 border-t border-white/5">
+    <div class="reveal rounded-2xl border border-white/10 bg-slate-surface px-8 py-14 sm:px-14 sm:py-16 text-center">
+      <h2 id="contact-heading" class="font-head font-bold text-3xl sm:text-4xl mb-4"></h2>
+      <p id="contact-text" class="text-fog max-w-lg mx-auto mb-9"></p>
+      <div id="contact-socials" class="flex items-center justify-center gap-5"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+<footer class="border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-5">
+    <p id="footer-copyright" class="text-sm text-fog"></p>
+    <div id="footer-socials" class="flex items-center gap-5"></div>
+  </div>
+</footer>
+
+<!-- ======================================================
+     ICONS (small inline SVG set, no external deps)
+====================================================== -->
+<script>
+const ICONS = {
+  github: `<svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.24.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.14-1.17 3.14-1.17.62 1.57.23 2.73.11 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55 4.52-1.51 7.78-5.77 7.78-10.8C23.5 5.74 18.27.5 12 .5Z"/></svg>`,
+  linkedin: `<svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.68H9.34V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>`,
+  email: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4.5" width="20" height="15" rx="2.5"/><path d="m3 6 9 6.5L21 6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  external: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  verify: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m20 6-11 11L4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+};
+
+function socialIconLink(key, href, extraClass=""){
+  if(!href) return "";
+  const label = key.charAt(0).toUpperCase() + key.slice(1);
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer" aria-label="${label}"
+    class="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-fog hover:text-ink hover:border-indigo-glow/50 transition-colors ${extraClass}">
+    ${ICONS[key] || ""}
+  </a>`;
+}
+
+/* ---------------------------------------------------------
+   RENDER — maps USER_PROFILE straight onto the DOM.
+   Nothing below this line should need editing; change
+   USER_PROFILE above instead.
+--------------------------------------------------------- */
+function render(profile){
+  // Nav / logo
+  document.getElementById('logo-initials').textContent = profile.logoInitials;
+  document.getElementById('logo-name').textContent = profile.name;
+  document.title = `${profile.name} — ${profile.title}`;
+
+  const navHTML = profile.nav.map(item =>
+    `<li><a href="${item.href}" class="link-underline hover:text-ink transition-colors">${item.label}</a></li>`
+  ).join("");
+  document.getElementById('nav-links').innerHTML = navHTML;
+  document.getElementById('nav-links-mobile').innerHTML = profile.nav.map(item =>
+    `<li><a href="${item.href}" class="block py-2.5 hover:text-ink transition-colors">${item.label}</a></li>`
+  ).join("");
+
+  // Hero
+  document.getElementById('hero-badge').innerHTML =
+    `<span class="w-1.5 h-1.5 rounded-full bg-mint-emerald"></span> ${profile.title}`;
+  document.getElementById('hero-name').textContent = `Hi, I'm ${profile.name.split(' ')[0]}.`;
+  document.getElementById('hero-bio').textContent = profile.bio;
+  const heroCta = document.getElementById('hero-cta');
+  heroCta.textContent = profile.heroCtaLabel;
+  heroCta.href = profile.heroCtaHref;
+
+  const socialsHTML = Object.entries(profile.socials)
+    .map(([key, href]) => socialIconLink(key, href)).join("");
+  document.getElementById('hero-socials').innerHTML = socialsHTML;
+  document.getElementById('contact-socials').innerHTML = socialsHTML;
+  document.getElementById('footer-socials').innerHTML = Object.entries(profile.socials)
+    .map(([key, href]) => socialIconLink(key, href, "w-8 h-8")).join("");
+
+  // About
+  document.getElementById('about-heading').textContent = profile.about.heading;
+  document.getElementById('about-paragraphs').innerHTML = profile.about.paragraphs
+    .map(p => `<p>${p}</p>`).join("");
+  document.getElementById('about-stats').innerHTML = profile.about.stats.map(s => `
+    <div class="rounded-2xl border border-white/10 bg-slate-surface px-4 py-5 text-center">
+      <div class="font-head font-bold text-2xl text-ink mb-1">${s.value}</div>
+      <div class="text-xs text-fog leading-snug">${s.label}</div>
+    </div>
+  `).join("");
+
+  // Projects
+  document.getElementById('projects-grid').innerHTML = profile.projects.map(p => `
+    <div class="card-hover group rounded-2xl border border-white/10 bg-slate-surface p-6 flex flex-col">
+      <div class="flex items-start justify-between gap-3 mb-3">
+        <h3 class="font-head font-semibold text-lg text-ink leading-snug">${p.title}</h3>
+        ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener noreferrer" aria-label="${p.linkLabel || 'View project'}"
+          class="shrink-0 w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center text-fog group-hover:text-indigo-glow group-hover:border-indigo-glow/50 transition-colors">
+          ${ICONS.external}
+        </a>` : ""}
+      </div>
+      <p class="text-sm text-fog leading-relaxed mb-5 flex-1">${p.description}</p>
+      <div class="flex flex-wrap gap-2">
+        ${p.tags.map(t => `<span class="text-[11px] px-2.5 py-1 rounded-full border border-white/10 text-fog">${t}</span>`).join("")}
+      </div>
+    </div>
+  `).join("");
+
+  // Certificates
+  document.getElementById('certificates-grid').innerHTML = profile.certificates.map(c => `
+    <a href="${c.link}" target="_blank" rel="noopener noreferrer"
+      class="card-hover group rounded-2xl border border-white/10 bg-slate-surface p-5 flex flex-col justify-between">
+      <div>
+        <h3 class="font-head font-semibold text-[15px] text-ink leading-snug mb-1.5">${c.name}</h3>
+        <p class="text-sm text-fog">${c.issuer}</p>
+      </div>
+      <div class="mt-5 flex items-center justify-between text-xs text-fog">
+        <span>${c.date}</span>
+        <span class="inline-flex items-center gap-1.5 text-mint-emerald group-hover:text-mint-emerald/80 transition-colors">
+          ${ICONS.verify} Verify
+        </span>
+      </div>
+    </a>
+  `).join("");
+
+  // Achievements timeline
+  document.getElementById('achievements-timeline').innerHTML = profile.achievements.map((a, i) => `
+    <div class="node-line flex gap-5 pb-9 last:pb-0">
+      <div class="flex flex-col items-center pt-1.5">
+        <div class="node-dot"></div>
+      </div>
+      <div class="pb-1">
+        <div class="text-xs text-indigo-glow font-medium mb-1.5">${a.year}</div>
+        <h3 class="font-head font-semibold text-ink text-[15px] mb-1.5 leading-snug">${a.title}</h3>
+        <p class="text-sm text-fog leading-relaxed">${a.detail}</p>
+      </div>
+    </div>
+  `).join("");
+
+  // Contact
+  document.getElementById('contact-heading').textContent = profile.contact.heading;
+  document.getElementById('contact-text').textContent = profile.contact.text;
+
+  // Footer
+  const year = new Date().getFullYear();
+  document.getElementById('footer-copyright').textContent = `© ${year} ${profile.footer.copyright}`;
+}
+
+render(USER_PROFILE);
+
+/* ---------------------------------------------------------
+   INTERACTIONS
+--------------------------------------------------------- */
+// Mobile nav toggle
+const navToggle = document.getElementById('nav-toggle');
+const navMobile = document.getElementById('nav-links-mobile');
+const iconOpen = document.getElementById('icon-open');
+const iconClose = document.getElementById('icon-close');
+navToggle.addEventListener('click', () => {
+  const isOpen = !navMobile.classList.contains('hidden');
+  navMobile.classList.toggle('hidden');
+  navMobile.classList.toggle('flex');
+  iconOpen.classList.toggle('hidden');
+  iconClose.classList.toggle('hidden');
+  navToggle.setAttribute('aria-expanded', String(!isOpen));
+});
+navMobile.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    navMobile.classList.add('hidden');
+    navMobile.classList.remove('flex');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+// Sticky nav shadow on scroll
+const siteNav = document.getElementById('site-nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 8) {
+    siteNav.classList.add('shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
+  } else {
+    siteNav.classList.remove('shadow-[0_1px_0_0_rgba(255,255,255,0.06)]');
+  }
+});
+</script>
+
+</body>
+</html>
