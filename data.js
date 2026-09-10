@@ -9,9 +9,9 @@ const USER_PROFILE = {
   resumeHref: "#",
 
   socials: {
-    github: "https://github.com/",
-    linkedin: "https://linkedin.com/in/",
-    email: "mailto:hello@example.com",
+    github: "https://github.com/ajay-pandiarajan",
+    linkedin: "https://www.linkedin.com/in/ajay-pandiarajan/",
+    email: "mailto:ajaypandiyarajann@gmail.com",
   },
 
   nav: [
@@ -29,35 +29,35 @@ const USER_PROFILE = {
       "Outside of coursework, I take apart old radios, prototype sensor rigs on breadboards, and write firmware that occasionally works on the first try.",
     ],
     stats: [
-      { value: "12+", label: "Circuits prototyped" },
-      { value: "6", label: "Hackathons entered" },
-      { value: "3", label: "Research papers read weekly" },
+      { value: "4", label: "Circuits prototyped" },
+      { value: "10+", label: "Certificates Earned" },
+      { value: "8.04", label: "CGPA Earned" },
     ],
   },
 
   projects: [
     {
-      title: "Gesture-Controlled Robotic Arm",
-      description: "A 4-DOF robotic arm driven by real-time hand-pose estimation, mapped to servo angles over a custom I2C protocol.",
-      tags: ["Python", "OpenCV", "Arduino", "I2C"],
+      title: "Design of Basic Electronic Voting Machine",
+      description: "A basic EVM build using CD4026 Decade Counters, 7-Segment Display to demonstrate the voting process",
+      tags: ["IoT", "CD4026", "EVM"],
       link: "https://github.com/",
       linkLabel: "GitHub",
     },
     {
-      title: "Solar MPPT Charge Controller",
-      description: "A perturb-and-observe MPPT controller built around an STM32, improving panel yield by roughly 18% under partial shading.",
-      tags: ["STM32", "Embedded C", "Power Electronics"],
+      title: "Fingerprint based Electronic Voting Machine",
+      description: "A Biometric enabled Voting Machine which enables the eligible voters to vote and designed with Arduino microcontroller and RM305 FP sensor.",
+      tags: ["RM305", "Arduino", "IoT"],
       link: "https://github.com/",
       linkLabel: "GitHub",
     },
     {
-      title: "Vibration-Based Fault Classifier",
-      description: "An edge ML pipeline that classifies motor bearing faults from accelerometer data, running inference directly on an ESP32.",
-      tags: ["TinyML", "PyTorch", "ESP32"],
+      title: "TrackoVex-a simple solution",
+      description: "An BLE Tracker device,inspired from Apple Airtag and build with the ESP32",
+      tags: ["ESP32", "BLE", "WebApp"],
       link: "https://github.com/",
       linkLabel: "GitHub",
     },
-    {
+  /*  {
       title: "Modular PCB Weather Station",
       description: "A stackable, solar-powered weather station with swappable sensor daughterboards and a LoRa uplink to a home dashboard.",
       tags: ["KiCad", "LoRa", "C++"],
@@ -77,7 +77,7 @@ const USER_PROFILE = {
       tags: ["Analog Design", "KiCad", "React"],
       link: "https://github.com/",
       linkLabel: "GitHub",
-    },
+    },*/
   ],
 
   certificates: [
